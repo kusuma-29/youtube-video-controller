@@ -1,0 +1,93 @@
+<!--
+  Project: YouTube Video Player with Custom Controls
+  Description: A simple HTML and JavaScript project to play/pause a YouTube video
+               and change its size using custom buttons.
+  Author: [Your Name]
+  Created for: Beginners learning DOM and API usage
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>YouTube Player with Custom Controls</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 30px;
+      }
+      button {
+        margin: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>YouTube Video Player with Custom Controls</h2>
+
+    <!-- Control Buttons -->
+    <div>
+      <button onclick="playPause()">Play/Pause</button>
+      <button onclick="makeBig()">Big</button>
+      <button onclick="makeSmall()">Small</button>
+      <button onclick="makeNormal()">Normal</button>
+    </div>
+
+    <br>
+
+    <!-- YouTube iframe with API enabled -->
+    <iframe
+      id="video1"
+      width="420"
+      height="315"
+      src="https://www.youtube.com/embed/m6X6XMROdBQ?enablejsapi=1"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>
+
+    <!-- Load YouTube IFrame Player API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+    <!-- JavaScript functions -->
+    <script>
+      var player;
+      var isPlaying = false;
+
+      // Called automatically when the YouTube IFrame API is ready
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('video1');
+      }
+
+      // Toggle play/pause
+      function playPause() {
+        if (isPlaying) {
+          player.pauseVideo();
+          isPlaying = false;
+        } else {
+          player.playVideo();
+          isPlaying = true;
+        }
+      }
+
+      // Resize Functions
+      function makeBig() {
+        document.getElementById("video1").width = 560;
+        document.getElementById("video1").height = 315;
+      }
+
+      function makeSmall() {
+        document.getElementById("video1").width = 320;
+        document.getElementById("video1").height = 180;
+      }
+
+      function makeNormal() {
+        document.getElementById("video1").width = 420;
+        document.getElementById("video1").height = 315;
+      }
+    </script>
+  </body>
+</html>
